@@ -1,4 +1,15 @@
 # TorToiSe
+This is a fork to build a docker container that is compatible with linux/amd64 to run on a Kubernetes cluster. Build with the following command:
+
+```bash
+docker buildx build --push --platform linux/amd64 -t [package repo]:[version] -t [package repo]:latest .
+```
+
+For this repository / package, the command is:
+```bash
+docker buildx build --push --platform linux/amd64 -t ghcr.io/jlbeard84/tortoise-tts:0.5 -t ghcr.io/jlbeard84/tortoise-tts:latest .
+```
+
 
 Tortoise is a text-to-speech program built with the following priorities:
 

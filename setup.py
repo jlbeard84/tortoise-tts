@@ -25,11 +25,10 @@ setuptools.setup(
         'progressbar',
         'einops',
         'unidecode',
-        'scipy',
+        'scipy==1.13.1',
         'librosa',
         'transformers==4.31.0',
-        'tokenizers==0.14.0',
-        'scipy==1.13.1'
+        'tokenizers>=0.11.1,<0.14',  # Compatible with transformers 4.31.0
         # 'deepspeed==0.8.3',
     ],
     classifiers=[
