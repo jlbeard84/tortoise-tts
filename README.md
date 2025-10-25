@@ -1,6 +1,8 @@
 # TorToiSe
 This is a fork to build a docker container that is compatible with linux/amd64 to run on a Kubernetes cluster. Build with the following command:
 
+## Building
+
 ```bash
 docker buildx build --push --platform linux/amd64 -t [package repo]:[version] -t [package repo]:latest .
 ```
@@ -10,6 +12,92 @@ For this repository / package, the command is:
 docker buildx build --push --platform linux/amd64 -t ghcr.io/jlbeard84/tortoise-tts:0.5 -t ghcr.io/jlbeard84/tortoise-tts:latest .
 ```
 
+## Running
+
+### Setting up Virtual Environment
+
+1. **Create and activate a Python virtual environment:**
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate  # On macOS/Linux
+   # or on Windows: .venv\Scripts\activate
+   ```
+
+2. **Install requirements:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### Socket Server and Clients
+
+This repository includes a socket-based TTS server and various client implementations for testing and integration.
+
+#### Starting the Socket Server
+```bash
+python tortoise/socket_server.py
+```
+The server will listen on port 5000 by default.
+
+#### Client Applications
+
+The repository includes several client implementations for different use cases:
+
+**1. Minimal Client (`minimal_client.py`)**
+- Quick testing with configuration file settings
+- Best for: Simple automated testing or integration
+- Usage: `python minimal_client.py`
+
+**2. Simple Client (`simple_client.py`)**
+- Interactive mode for testing different voices and text
+- Includes error handling and user-friendly interface
+- Usage: `python simple_client.py`
+- Features:
+  - Option 1: Run simple test with default settings
+  - Option 2: Interactive mode to test different voices and custom text
+
+**3. Examples Client (`examples_client.py`)**
+- Comprehensive examples showing various use cases
+- Multiple testing scenarios (basic, multiple voices, different texts, random combinations)
+- Usage: `python examples_client.py`
+- Best for: Learning how to integrate TTS into your applications
+
+**4. Helper Script (`run_client.sh`)**
+- Convenient menu-driven script to run any client
+- Automatically uses the correct Python interpreter
+- Usage: `./run_client.sh`
+
+#### Configuration
+
+Edit `client_config.py` to customize:
+- Server IP address (`SERVER_IP`)
+- Server port (`SERVER_PORT`) 
+- Default voice (`DEFAULT_VOICE`)
+- Default test text (`DEFAULT_TEXT`)
+
+#### Available Voices
+
+The following voices are available (located in `tortoise/voices/`):
+- angie, applejack, daniel, deniro, emma, freeman
+- geralt, halle, jlaw, lj, mol, pat, rainbow
+- snakes, tim_reynolds, tom, weaver, william
+
+#### Client Usage Examples
+
+```bash
+# Quick test with default settings
+python minimal_client.py
+
+# Interactive testing
+python simple_client.py
+
+# Run multiple examples
+python examples_client.py
+
+# Use the helper menu
+./run_client.sh
+```
+
+## Original Project Overview
 
 Tortoise is a text-to-speech program built with the following priorities:
 
